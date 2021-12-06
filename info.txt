@@ -15,7 +15,7 @@ v2.7.2 = patch "id" to "name [ id ]" (2021.12.01)
 v2.n.0 = be able to find user's pwd
 
 
-DB: junwoo
+DB: jaegwang5046
 
 <TABLE>
 
