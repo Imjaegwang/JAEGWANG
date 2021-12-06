@@ -1,0 +1,66 @@
+<PATCH NOTE>
+v2.0.0 = login, sign up, forum with one session(connecting user info with pages) (2021.11.03)
+v2.1.0 = paging forum (2021.11.04)
+v2.2.0 = be able to search posted in forum (2021.11.07)
+v2.3.0 = be able to comment in posted (2021.11.09)
+v2.4.0 = be able to upload img in forum (2021.11.10)
+v2.5.0 = use css (2021.11 ~ )
+v2.6.0 = change function files to class files (2021.11.24)
+v2.6.1 = be able to print comments count (2021.11.25)
+v2.7.0 = use ajax to modify (2021.11.26)
+v2.7.1 = EUC-KR charset patch (2021.12.01)
+v2.7.2 = patch "id" to "name [ id ]" (2021.12.01)
+
+//to be updated// 
+v2.n.0 = be able to find user's pwd
+
+
+DB: junwoo
+
+<TABLE>
+
+CREATE TABLE `member` (
+	`id` VARCHAR(50) NULL DEFAULT NULL COMMENT '아이디' COLLATE 'utf8_general_ci',
+	`pwd` VARCHAR(50) NULL DEFAULT NULL COMMENT '비번' COLLATE 'utf8_general_ci',
+	`name` VARCHAR(50) NULL DEFAULT NULL COMMENT '이름' COLLATE 'utf8_general_ci',
+	`birth` DATETIME NULL DEFAULT NULL COMMENT '생일',
+	`email` VARCHAR(100) NULL DEFAULT NULL COMMENT '이메일(비번찾기)' COLLATE 'utf8_general_ci',
+	`phone` VARCHAR(50) NULL DEFAULT NULL COMMENT '폰번호' COLLATE 'utf8_general_ci',
+	UNIQUE INDEX `id` (`id`) USING BTREE
+)
+COMMENT='유저 DB'
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+;
+
+
+CREATE TABLE `board` (
+	`idx` INT(11) NOT NULL AUTO_INCREMENT COMMENT '글 번호',
+	`title` VARCHAR(100) NULL DEFAULT NULL COMMENT '제목' COLLATE 'utf8_general_ci',
+	`name` VARCHAR(50) NULL DEFAULT NULL COMMENT '작성자' COLLATE 'utf8_general_ci',
+	`content` LONGTEXT NULL DEFAULT NULL COMMENT '글내용' COLLATE 'utf8_general_ci',
+	`date` DATETIME NULL DEFAULT NULL COMMENT '작성일',
+	`hit` INT(11) NULL DEFAULT NULL COMMENT '조회수',
+	`file` VARCHAR(100) NULL DEFAULT NULL COMMENT '파일명' COLLATE 'utf8_general_ci',
+	PRIMARY KEY (`idx`) USING BTREE
+)
+COMMENT='게시판 DB'
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=82
+;
+
+
+CREATE TABLE `reply` (
+	`idx` INT(11) NOT NULL AUTO_INCREMENT COMMENT '댓글 번호',
+	`num` INT(11) NULL DEFAULT NULL COMMENT '글 번호',
+	`name` VARCHAR(50) NULL DEFAULT NULL COMMENT '작성자' COLLATE 'utf8_general_ci',
+	`content` MEDIUMTEXT NULL DEFAULT NULL COMMENT '댓글내용' COLLATE 'utf8_general_ci',
+	`date` DATETIME NULL DEFAULT NULL COMMENT '작성일',
+	PRIMARY KEY (`idx`) USING BTREE
+)
+COMMENT='댓글 DB'
+COLLATE='utf8_general_ci'
+ENGINE=MyISAM
+AUTO_INCREMENT=12
+;
